@@ -1,20 +1,24 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if numRows == 1 or numRows >= len(s):
+        if numRows==1 or numRows==len(s):
             return s
 
-        idx, d = 0, 1
-        rows = [[] for _ in range(numRows)]
-
+        lis=[[] for _ in range(numRows)]
+        ind=0
+        d=0
         for char in s:
-            rows[idx].append(char)
-            if idx == 0:
-                d = 1
-            elif idx == numRows - 1:
-                d = -1
-            idx += d
+            lis[ind].append(char)
+            if ind==0:
+                d=1
+            elif ind==numRows-1:
+                d=-1
 
-        for i in range(numRows):
-            rows[i] = ''.join(rows[i])
+            ind+=d
 
-        return ''.join(rows)   
+        x=""
+
+        for i in range(len(lis)):
+            x+=''.join(lis[i])
+
+        return x
+      
