@@ -1,18 +1,21 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        d=dict()
+        l=0
+        r=len(nums)-1
         ans=[]
-        for i in range(len(nums)):
-            if target-nums[i] in d:
-                ans.append(d.get(target-nums[i]))
-                ans.append(i+1)
-                break
-
+        while(l<r):
+            if nums[l]+nums[r]<target:
+                l+=1
+            elif nums[l]+nums[r]>target:
+                r-=1
 
             else:
-                d[nums[i]]=i+1
-      
+                ans.append(l+1)
+                ans.append(r+1)
+                break
+        
         return ans
+        
 
                 
         
