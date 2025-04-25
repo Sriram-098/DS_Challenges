@@ -8,6 +8,7 @@ class Solution:
             rem=(sum%k+k)%k
             count+=d.get(rem,0)
             d[rem]=d.get(rem,0)+1
+            
 
         return count
 
