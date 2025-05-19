@@ -19,6 +19,6 @@ class Solution:
         sc=3*(j//3)
         for m in range(sr,sr+3):
             for n in range(sc,sc+3):
-                if (m!=i and n!=j) and board[m][n]==board[i][j]:
+                if (m!=i or  n!=j) and board[m][n]==board[i][j]:
                     return False
         
