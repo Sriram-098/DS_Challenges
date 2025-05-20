@@ -12,8 +12,7 @@ class Solution:
             length+=1
             current=current.next
         current=head
-        if length==1:
-            return None
+        
         if length==n:
             return head.next
         for i in range(length-n-1):
