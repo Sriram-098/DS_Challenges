@@ -1,24 +1,26 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if numRows==1 or numRows==len(s):
+        if numRows==1:
             return s
-
-        lis=[[] for _ in range(numRows)]
-        ind=0
         d=0
-        for char in s:
-            lis[ind].append(char)
-            if ind==0:
-                d=1
-            elif ind==numRows-1:
-                d=-1
+        i=0
+        x=0
+        ans=[[] for _ in range(numRows)]
+        print(ans)
+        while(i<len(s)):
+            ans[d].append(s[i])
+            if d==0:
+                x=1
+            if d==numRows-1:
+                x=-1
 
-            ind+=d
+            d+=x
+            i+=1
+        a=""
+        for i in ans:
+            a+="".join(i)
+        return a
 
-        x=""
 
-        for i in range(len(lis)):
-            x+=''.join(lis[i])
-
-        return x
+        
       
