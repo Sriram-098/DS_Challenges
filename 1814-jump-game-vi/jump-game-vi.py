@@ -10,11 +10,6 @@ class Solution:
 
             while q and dp[i]>=dp[q[-1]]:
                 q.pop()
-
             q.append(i)
-            if q[0]<i-k:
-                q.popleft()
-            
-            
+
         return dp[-1]
-        
