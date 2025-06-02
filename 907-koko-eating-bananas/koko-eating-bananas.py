@@ -6,7 +6,7 @@ class Solution:
         while(low<=high):
             mid=(low+high)//2
             num_hrs=self.f(piles,mid,h)
-            if num_hrs==1:
+            if num_hrs<=h:
                 ans=mid
                 high=mid-1
             else:
@@ -20,9 +20,8 @@ class Solution:
         ans=0
         for i in range(len(piles)):
             ans+=math.ceil(piles[i]/x)
-            if ans>h:
-                return 2
-        return 1
+            
+        return ans
 
 
         
