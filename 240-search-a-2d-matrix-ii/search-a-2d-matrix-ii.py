@@ -1,21 +1,15 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        low=0
-        high=len(matrix)-1
-        for mid in range(len(matrix)):
-            
-            if target>=matrix[mid][0] and target<=matrix[mid][len(matrix[0])-1]:
-                new_low=0
-                new_high=len(matrix[0])-1
-                while(new_low<=new_high):
-                    new_mid=(new_low+new_high)//2
-                    if matrix[mid][new_mid]==target:
-                        return True
-                    elif matrix[mid][new_mid]>target:
-                        new_high=new_mid-1
-                    else:
-                        new_low=new_mid+1
-
+        r=0
+        c=len(matrix[0])-1
+        while r<len(matrix) and c>=0:
+            if matrix[r][c]==target:
+                return True
+            elif target<matrix[r][c]:
+                c-=1
+            else:
+                r+=1
 
         return False
+        
         
