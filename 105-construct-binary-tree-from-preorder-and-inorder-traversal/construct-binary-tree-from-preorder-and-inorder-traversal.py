@@ -14,20 +14,20 @@ class Solution:
         print(deq)
 
         def build(start,end):
-            if deq:
-                if start >end:
-                    return None
+            
+            if start >end:
+                return None
 
-                val=deq.popleft()
-                root=TreeNode(val)
-                mid=mapping[val]
+            val=deq.popleft()
+            root=TreeNode(val)
+            mid=mapping[val]
 
-                root.left=build(start,mid-1)
-                root.right=build(mid+1,end)
+            root.left=build(start,mid-1)
+            root.right=build(mid+1,end)
 
-                return root
+            return root
 
-        return build(0,len(preorder))
+        return build(0,len(preorder)-1)
 
 
             
