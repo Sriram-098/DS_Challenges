@@ -5,4 +5,5 @@ from
    num
 FROM MyNumbers
 GROUP BY num
-HAVING COUNT(num) = 1) as other;
+HAVING COUNT(num) = 1
+order by num desc) as other;
