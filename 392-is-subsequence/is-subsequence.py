@@ -1,15 +1,23 @@
+from collections import deque
+
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
-        if len(s)==0:
+        d=defaultdict()
+        if not s:
             return True
-        if len(t)==0:
-            return False
-        j=0
+        d[s[0]]=s
+        
+        print(d)
         for i in range(len(t)):
-            if s[j]==t[i]:
-                j+=1
-            if j==len(s):
+            if t[i] not in d:
+                continue
+            char=d[t[i]]
+            del d[t[i]]
+            if len(char[1:])==0:
                 return True
+            else :
+                d[char[1]]=char[1:]
         return False
+        
             
         
