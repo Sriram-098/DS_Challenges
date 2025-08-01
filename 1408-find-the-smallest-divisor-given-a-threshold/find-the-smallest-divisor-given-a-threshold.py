@@ -8,8 +8,10 @@ class Solution:
             check=self.f(nums,mid,threshold)
             if check==True:
                 ans=mid
+                
                 high=mid-1
             else:
+               
                 low=mid+1
         return ans
 
