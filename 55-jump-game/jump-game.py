@@ -1,11 +1,13 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        maxind=0
+        maxgo=0
+        currgo=0
         for i in range(len(nums)):
-            if i>maxind:
+            if maxgo<i:
                 return False
-            maxind=max(i+nums[i],maxind)
-            if maxind>=len(nums)-1:
+            maxgo=max(maxgo,nums[i]+i)
+            if maxgo>=len(nums)-1:
                 return True
-        return True
+        return False
+            
         
