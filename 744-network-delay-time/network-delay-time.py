@@ -2,22 +2,31 @@ from queue import PriorityQueue
 class Solution:
     def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
         adj=[[] for _ in range(n+1)]
-        for u,v,time in times:
-            adj[u].append((v,time))
-
-        time=0
-        pq=PriorityQueue()
-        pq.put((0,k))
-        s={}
-        while not pq.empty():
-            time,node=pq.get()
-            if node in s:
+        for u,v,w in times:
+            adj[u].append((v,w))
+        q=PriorityQueue()
+        q.put((0,k))
+        vis=[False]*(n+1)
+        vis[k]=True
+        vis[0]=True
+        d={}
+        while not q.empty():
+            t,node=q.get()
+            vis[node]=True
+            if node in d:
                 continue
-            s[node]=time
+            if node not in d:
+                d[node]=t
             for nei,wt in adj[node]:
-                if nei not in s:
+                    q.put((t+wt,nei))
                     
-                    pq.put((time+wt,nei))
-        return max(s.values()) if n==len(s) else -1
+        print(vis,d)
+        return max(d.values()) if all(vis) else -1
         
+        
+        
+    
+
+
+
         
