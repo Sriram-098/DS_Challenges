@@ -6,22 +6,25 @@ class Solution:
             adj[u].append((v,w))
         q=PriorityQueue()
         q.put((0,k))
-        vis=[False]*(n+1)
-        vis[k]=True
-        vis[0]=True
-        d={}
+        time=[1e9]*(n+1)
+        time[k]=0
+        time[0]=0
+        
         while not q.empty():
             t,node=q.get()
-            vis[node]=True
-            if node in d:
-                continue
-            if node not in d:
-                d[node]=t
             for nei,wt in adj[node]:
-                    q.put((t+wt,nei))
-                    
-        print(vis,d)
-        return max(d.values()) if all(vis) else -1
+                if wt+t<time[nei]:
+                    q.put((wt+t,nei))
+                    time[nei]=wt+t
+        ans=0     
+        print(time)
+        for i in range(len(time)):
+            if time[i]==1e9:
+                return -1
+            ans=max(ans,time[i])
+        return ans
+
+            
         
         
         
