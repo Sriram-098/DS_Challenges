@@ -1,34 +1,22 @@
 class Solution:
     def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-
-
-
-
         vis=[0]*len(graph)
-        def dfs(node):
-            if vis[node]==1:
+        def dfs(i):
+            if vis[i]==1:
                 return False
-            if vis[node]==2:
+            if vis[i]==2:
                 return True
-            vis[node]=1
-
-
-
-            for nei in graph[node]:
+            vis[i]=1
+            for nei in graph[i]:
                 if not dfs(nei):
                     return False
-            
-
-            vis[node]=2
+            vis[i]=2
             return True
-
 
 
         ans=[]
         for i in range(len(graph)):
             if dfs(i):
                 ans.append(i)
-        return ans     
-
-        
+        return ans
         
