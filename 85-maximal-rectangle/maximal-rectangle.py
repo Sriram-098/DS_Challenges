@@ -28,12 +28,10 @@ class Solution:
         rect=[0]*len(matrix[0])
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                if i>0 and matrix[i-1][j]=='0':
-                    rect[j]=int(matrix[i][j])
-                elif matrix[i][j]=='0':
-                    rect[j]=int(matrix[i][j])
-                else:
+                if matrix[i][j]=='1':
                     rect[j]+=int(matrix[i][j])
+                else:
+                    rect[j]=0
                     
             maxi=max(maxi,largestRectangleArea(rect))
         return maxi
