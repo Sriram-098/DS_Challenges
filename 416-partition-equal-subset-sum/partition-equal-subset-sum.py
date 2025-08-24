@@ -1,31 +1,26 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        totalsum=sum(nums)
+        totalsum=0
+        for i in range(len(nums)):
+            totalsum+=nums[i]
         if totalsum%2!=0:
             return False
-        
-        dp=[[-1]*((totalsum//2)+1) for i in range(len(nums))]
-
-        
-
+        totalsum=totalsum//2
+        dp=[[-1]*(totalsum+1) for _ in range(len(nums))]
         def f(i,target):
-            if i==0:
-                return nums[i]==target
             if target==0:
                 return True
+            if i==0:
+                return target==nums[0]
             if dp[i][target]!=-1:
                 return dp[i][target]
-
-            nottake=f(i-1,target)
-            take=False
+            nonpick=f(i-1,target)
+            pick=False
             if target>=nums[i]:
-                take=f(i-1,target-nums[i])
-            dp[i][target]=take or nottake
+                pick=f(i-1,target-nums[i])
+            dp[i][target]=pick or nonpick
             return dp[i][target]
-                
-
-
         
-        return f(len(nums)-1,totalsum//2)
-    
+        return f(len(nums)-1,totalsum)
+
         
