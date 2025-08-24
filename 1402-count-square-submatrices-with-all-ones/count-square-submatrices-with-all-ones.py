@@ -1,19 +1,16 @@
 class Solution:
-    def countSquares(self, grid: List[List[int]]) -> int:
-        dp=[[0]*(len(grid[0])+1) for _ in range(len(grid)+1)]
-        for i in range(1,len(grid)+1):
-            for j in range(1,len(grid[0])+1):
-                if grid[i-1][j-1]==0:
-                    continue
-                else:
-                    dp[i][j]=1+min(dp[i-1][j-1],dp[i][j-1],dp[i-1][j])
-
-        sq=0
-        for i in range(len(grid)+1):
-            for j in range(len(grid[0])+1):
-                sq+=dp[i][j]
-
-        return sq
-
+    def countSquares(self, matrix: List[List[int]]) -> int:
+        ans=0
+        for i in range(1,len(matrix)):
+            for j in range(1,len(matrix[0])):
+                if matrix[i][j]==1:
+                    matrix[i][j]+=min(matrix[i-1][j],matrix[i][j-1],matrix[i-1][j-1])
+                    ans+=matrix[i][j]
+        print(matrix)
+        for i in range(1,len(matrix)):
+            ans+=matrix[i][0]
+        for i in range(len(matrix[0])):
+            ans+=matrix[0][i]
+        return ans
         
         
