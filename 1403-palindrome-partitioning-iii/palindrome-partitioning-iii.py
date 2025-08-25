@@ -1,30 +1,24 @@
+from functools import lru_cache
 class Solution:
     def palindromePartition(self, s: str, k: int) -> int:
-        n = len(s)
-
-        # Helper to compute cost to make substring palindrome
-        def cost(l, r):
-            changes = 0
-            while l < r:
-                if s[l] != s[r]:
-                    changes += 1
-                l += 1
-                r -= 1
-            return changes
-
-        from functools import lru_cache
-
+        def cost(i,j):
+            count=0
+            while i<j:
+                if s[i]!=s[j]:
+                    count+=1
+                i+=1
+                j-=1
+            return count
         @lru_cache(None)
-        def f(start, k_left):
-            if start == n and k_left == 0:
+        def f(start,k_left):
+            if k_left==0 and start==len(s):
                 return 0
-            if start == n or k_left == 0:
-                return float("inf")
-
-            ans = float("inf")
-            for end in range(start, n):
-                curr_cost = cost(start, end)
-                ans = min(ans, curr_cost + f(end + 1, k_left - 1))
-            return ans
-
-        return f(0, k)
+            if k_left==0 or start==len(s):
+                return 1e9
+            mini=1e9
+            for end in range(start,len(s)):
+                costn=cost(start,end)
+                mini=min(mini,costn+f(end+1,k_left-1))
+            return mini
+        
+        return f(0,k)
