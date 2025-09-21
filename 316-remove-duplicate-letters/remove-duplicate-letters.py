@@ -1,19 +1,25 @@
+from collections import Counter
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         freq=Counter(s)
+        se=set()
         st=[]
-        store=set()
-        for ch in s:
-            freq[ch]-=1
-            if ch in store:
+        for i in range(len(s)):
+            freq[s[i]]-=1
+            if s[i] in se:
                 continue
-            while st and st[-1]>ch and freq[st[-1]]>0:
-                removed=st.pop()
-                store.remove(removed)
-            
-            st.append(ch)
-            store.add(ch)
-        print(st,s)
+            while st and st[-1]>s[i] and freq[st[-1]]>=1:
+                popped=st.pop()
+                se.remove(popped)
+                
+
+            st.append(s[i])
+            se.add(s[i])
+        print(st)
         return "".join(st)
+            
+
+
+        
 
         
