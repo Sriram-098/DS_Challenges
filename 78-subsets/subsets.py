@@ -1,24 +1,9 @@
+from itertools import combinations
 class Solution:
-    
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        ans=[]
-        sub=[]
-        def f(i,nums,sub,ans):
-            if i==len(nums):
-                ans.append(sub[:])
-                return
-
-            sub.append(nums[i])
-            f(i+1,nums,sub,ans)
-            sub.pop()
-            f(i+1,nums,sub,ans)
-
-
-
-
-        f(0,nums,sub,ans)
-        return ans
-
-    
-        
+        result=[]
+        for i in range(len(nums)+1):
+            for sub in combinations(nums,i):
+                result.append(list(sub))
+        return result
         
