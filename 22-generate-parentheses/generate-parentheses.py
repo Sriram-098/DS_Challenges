@@ -1,20 +1,17 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-
         ans=[]
-        def generate(s,left,right):
+        def f(left,right,s):
             if left==n and right==n:
                 ans.append(s)
                 return 
 
-
             if left<n:
-                generate(s+'(',left+1,right)
-            if right<left:
-                generate(s+')',left,right+1)
+                f(left+1,right,s+"(")
+            if left >right:
+                f(left,right+1,s+")")
 
 
-
-        generate("",0,0)
+        f(0,0,"")
         return ans
         
