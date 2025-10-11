@@ -1,26 +1,29 @@
 class Solution:
     def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
-        ans=[]
-        sub=[]
-        def f(i,nums,target,sub):
-            if target==0:
-                ans.append(sub[:])
-                return 
-
+        result=[]
+        nums.sort()
+        def generate(i,sub,target):
             if i==len(nums):
                 if target==0:
-                    ans.append(sub[:])
+                    result.append(sub[:])
                 return 
+            if target==0:
+                result.append(sub[:])
+                return 
+            if nums[i]>target:
+                return
 
-            if target>=nums[i]:
+            if nums[i]<=target:
                 sub.append(nums[i])
-                f(i,nums,target-nums[i],sub)
+                generate(i,sub,target-nums[i])
                 sub.pop()
 
-            f(i+1,nums,target,sub)
+            generate(i+1,sub,target)
+
+        generate(0,[],target)
+        return result
 
 
 
-        f(0,nums,target,sub)
-        return ans
+
         
