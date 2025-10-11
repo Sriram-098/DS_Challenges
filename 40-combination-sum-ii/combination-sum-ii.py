@@ -1,26 +1,36 @@
 class Solution:
     def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
-        ans=[]
-        sub=[]
         nums.sort()
-        def f(i,nums,target,sub):
+        result=[]
+        def generate(i,sub,target,used):
             if target==0:
-                ans.append(sub[:])
+                result.append(sub[:])
                 return 
+            if i==len(nums):
+                if target==0:
+                    result.append(sub[:])
+                return 
+                
 
-            for j in range(i,len(nums)):
-                if j>i and nums[j]==nums[j-1]:
+
+            for j in range(i,len(nums),1):
+
+                
+                if j>i and nums[j]==nums[j-1] :
                     continue
-                if target<nums[j]:
+                if nums[j]>target:
                     break
                 
-                sub.append(nums[j])
-                f(j+1,nums,target-nums[j],sub)
-                sub.pop()
+                if nums[j]<=target:
+                    used[j]=1
+                    sub.append(nums[j])
+                    generate(j+1,sub,target-nums[j],used)
+                    sub.pop()
+                    used[j]=0
 
-                    
+                
+        used=[0]*len(nums)
+        generate(0,[],target,used)
+        return result
 
-
-        f(0,nums,target,sub)
-        return ans
         
