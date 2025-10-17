@@ -5,20 +5,25 @@
 #         self.next = next
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy=ListNode(0)
-        prev=dummy
-        dummy.next=head
 
+        prev=ListNode(0)
         curr=head
-        while curr!=None:
-            if curr.next and curr.val==curr.next.val:
+        prev.next=head
+        dummy=prev
+        while curr:
+            if curr.next!=None and curr.val==curr.next.val:
                 while curr.next and curr.val==curr.next.val:
-                        curr=curr.next
-                
+                    curr.next=curr.next.next
                 prev.next=curr.next
                 curr=curr.next
+
+                
             else:
-                prev=prev.next
+                prev=curr
                 curr=curr.next
         return dummy.next
+
+
+
+        
         
