@@ -10,15 +10,17 @@ class Solution:
         prev=ListNode(0)
         prev.next=head
         dummy=prev
-        for i in range(left-1):
+        curr=head
+        for _ in range(left-1):
             prev=prev.next
         curr=prev.next
+
         for _ in range(right-left):
             nextnode=curr.next
             curr.next=nextnode.next
             nextnode.next=prev.next
             prev.next=nextnode
-        return dummy.next
 
+        return dummy.next
 
         
