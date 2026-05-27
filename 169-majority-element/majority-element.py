@@ -1,18 +1,18 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        d=dict()
-        maxi=0
+        d=Counter(nums)
+        maxi=max(d.values())
         for i in range(len(nums)):
-            if nums[i] in d:
-                d[nums[i]]+=1
-            else:
-                d[nums[i]]=1
+            if d.get(nums[i])==maxi:
+                return nums[i]
 
-            maxi=max(maxi,d[nums[i]])
-        for k,v in d.items():
-            if v==maxi:
-                return k
-        return -1
         
 
+
+
+        
+
+
+
+            
         
