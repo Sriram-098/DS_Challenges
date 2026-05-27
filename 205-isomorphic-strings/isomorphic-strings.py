@@ -3,9 +3,7 @@ class Solution:
         d={}
         for i in range(len(s)):
             if s[i] in d:
-                if d.get(s[i])==t[i]:
-                    continue
-                else:
+                if d[s[i]]!=t[i]:
                     return False
             else:
                 if t[i] not in d.values():
@@ -13,5 +11,6 @@ class Solution:
                 else:
                     return False
         return True
-        
+
+
         
