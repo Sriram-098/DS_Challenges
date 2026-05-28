@@ -2,21 +2,23 @@ class Solution:
     def maximumSubarraySum(self, nums: List[int], k: int) -> int:
         l=0
         r=0
-        maxi=0
         s=0
-        store=set()
-        while(r<len(nums)):
-            
-            while nums[r] in store or ((r-l+1)>k):
-                
-                store.remove(nums[l])
-                s-=nums[l]
-                l+=1
-            store.add(nums[r])
+        ans=0
+        se=set()
+        while r<len(nums):
             s+=nums[r]
-            if (r-l+1) ==k:
-                maxi=max(s,maxi)
+            
+
+            while nums[r] in se or  r-l+1 >k :
+                s-=nums[l]
+                se.remove(nums[l])
+                l+=1
+            se.add(nums[r])
+            if r-l+1 ==k:
+                ans=max(ans,s)
             r+=1
-        return maxi
-                
+
+        return ans 
+
+
         
