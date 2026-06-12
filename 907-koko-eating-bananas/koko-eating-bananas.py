@@ -3,10 +3,7 @@ class Solution:
         def f(mid):
             count=0
             for i in range(len(piles)):
-                if piles[i]<=mid:
-                    count+=1
-                else:
-                    count+=(ceil(piles[i]/mid))
+                count+=(ceil(piles[i]/mid))
             return count
 
         l=1
