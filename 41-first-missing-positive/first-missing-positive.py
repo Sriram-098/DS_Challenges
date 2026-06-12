@@ -2,18 +2,22 @@ class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         
         r=0
-        while (r<len(nums)):
-            num=nums[r]
-            pos=nums[r]-1
-            if num>0 and num<len(nums):
-                if num!=nums[pos]:
-                    nums[r],nums[pos]=nums[pos],nums[r]
+        while r<len(nums):
+            element=nums[r]
+            pos=element-1
+
+            if element>0 and element<=len(nums):
+                if nums[pos]!=element:
+                    nums[pos],nums[r]=nums[r],nums[pos]
                     continue
             r+=1
+
         for i in range(len(nums)):
             if nums[i]!=i+1:
                 return i+1
         return len(nums)+1
+
+        
 
 
 
