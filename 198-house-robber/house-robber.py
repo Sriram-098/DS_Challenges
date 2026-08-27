@@ -1,19 +1,7 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        dp=[-1]*len(nums)
-        def robhouse(i):
-            if i<0:
-                return 0
-            if dp[i]!=-1:
-                return dp[i]
-
-            onehouse=nums[i]+robhouse(i-2)
-            another=0+robhouse(i-1)
-            dp[i]=max(onehouse,another)
-            return dp[i]
-
-
-        return robhouse(len(nums)-1)
-
-
-        
+        n=len(nums)
+        dp=[0]*(n+2)
+        for i in range(n-1,-1,-1):
+            dp[i]=max(nums[i]+dp[i+2],dp[i+1])
+        return dp[0]
