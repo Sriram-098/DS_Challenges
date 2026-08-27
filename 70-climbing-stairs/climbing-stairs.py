@@ -1,18 +1,19 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        dp=[-1]*(n+1)
-        def helper(n):
-            if dp[n]!=-1:
-                return dp[n]
-            if n==0:
+        dp=[0]*(n+1)
+        def help(i):
+            if dp[i]:
+                return dp[i]
+            if i==0:
                 return 1
-
-            if n<0:
+            if i<0:
                 return 0
-            onestep=helper(n-1)
-            twostep=helper(n-2)
-            dp[n]=onestep+twostep
-            return dp[n]
 
-        return helper(n)
+            onestep=help(i-1)
+            twostep=help(i-2)
+            dp[i]=onestep+twostep
+            return dp[i]
+
+
+        return help(n)
         
