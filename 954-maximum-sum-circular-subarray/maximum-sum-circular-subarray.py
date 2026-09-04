@@ -1,32 +1,34 @@
 class Solution:
-    def maxSubarraySumCircular(self, arr: List[int]) -> int:
-        totalsum=sum(arr)
-        maxsum=self.kadenes(arr)
-        minsum=self.minkadenes(arr)
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+
+        totalsum=sum(nums)
+        def kadenes_mini(arr):
+            curr_mini=0
+            mini=1e9
+            for i in range(len(arr)):
+                curr_mini+=arr[i]
+                if curr_mini<mini:
+                    mini=curr_mini
+                if curr_mini>0:
+                    curr_mini=0
+            return mini
+        def kadenes_maxi(arr):
+            curr_sum=0
+            max_sum=-1e9
+            for i in range(len(arr)):
+                curr_sum+=arr[i]
+                #print(max_sum)
+                if curr_sum>max_sum:
+                    max_sum=curr_sum
+                if curr_sum<0:
+                    curr_sum=0
+            return max_sum
+        min_sum=kadenes_mini(nums)
+        maxsum=kadenes_maxi(nums)
+
+        
+        print(maxsum,min_sum)
+
         if maxsum<0:
             return maxsum
-        return max(maxsum,totalsum-minsum)
-    def kadenes(self,arr):
-        curr=0
-        maxsum=-1e9
-        for i in range(len(arr)):
-            curr+=arr[i]
-            if maxsum<curr:
-                maxsum=curr
-            if curr<0:
-                curr=0
-        return maxsum
-        
-    def minkadenes(self,arr):
-        curr=0
-        minsum=1e9
-        for i in range(len(arr)):
-            curr+=arr[i]
-            if minsum>curr:
-                minsum=curr
-            if curr>0:
-                curr=0
-        return minsum
-        
-        
-
+        return max(totalsum-min_sum,maxsum)
