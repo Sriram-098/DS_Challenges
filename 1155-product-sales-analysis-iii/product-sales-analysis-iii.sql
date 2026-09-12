@@ -1,8 +1,7 @@
-select product_id,year as first_year,quantity,price
-from sales 
-where (product_id,year) in (
-    select product_id,min(year)
-    from sales 
-    group by product_id
-
-);
+SELECT s1.product_id, s1.year AS first_year, s1.quantity, s1.price
+FROM sales s1
+LEFT JOIN sales s2
+ON s1.product_id = s2.product_id
+AND s1.year > s2.year
+where s2.product_id is null
+;
