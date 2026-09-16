@@ -5,12 +5,15 @@ class Solution:
         for i in range(len(nums)):
             if count==0:
                 canditate=nums[i]
-                count=1
+                count+=1
+            elif nums[i]!=canditate:
+                count-=1
             elif nums[i]==canditate:
                 count+=1
-            else:
-                count-=1
-
         return canditate
+            
+            
+            
+        
         
         
