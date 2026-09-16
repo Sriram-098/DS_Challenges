@@ -1,23 +1,14 @@
 class Solution:
-    def setZeroes(self, matrix: List[List[int]]) -> None:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
         q=deque()
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 if matrix[i][j]==0:
-                    q.append([i,j])
+                    q.append((i,j))
 
-        for i in range(len(q)):
-            x,y=q.pop()
-            self.f(x,y,matrix)
-    
-    def f(self,i,j,matrix):
-        print(i,j)
-        for k in range(0,len(matrix[0])):
-            
-            matrix[i][k]=0
-        
-        for k in range(0,len(matrix)):
-            
-            matrix[k][j]=0
-        
-        
+        while len(q)>0:
+            m,n=q.popleft()
+            for i in range(len(matrix[0])):
+                matrix[m][i]=0
+            for j in range(len(matrix)):
+                matrix[j][n]=0
