@@ -1,15 +1,16 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        maxi=1
-        mini=1
+        left=1
+        right=1
         ans=-1e9
         for i in range(len(nums)):
-            if nums[i]<0:
-                maxi,mini=mini,maxi
-            
-            maxi=max(nums[i],maxi*nums[i])
-            mini=min(nums[i],mini*nums[i])
-            ans=max(ans,maxi,mini)
+            if left==0:
+                left =1
+            if right==0:
+                right=1
+            left=left*nums[i]
+            right=right*nums[len(nums)-i-1]
+            ans=max(ans,left,right)
         return ans
-
+        
         
