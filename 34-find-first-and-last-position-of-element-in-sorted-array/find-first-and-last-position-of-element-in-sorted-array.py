@@ -1,42 +1,38 @@
 class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        ans=[-1,-1]
-        
-        
-        def lower():
-            l=0
-            r=len(nums)-1
-            while l<r:
-                mid=(l+r)//2
-                if nums[mid]<target:  
-                    l=mid+1
-                else:
-                    r=mid
-            return l
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
 
-        def upper():
+
+        ans=[-1,-1]
+        def lower_bound():
             l=0
             r=len(nums)-1
             while l<=r:
-                mid=(l+r)//2
+                mid=l+(r-l)//2
+                
+                if nums[mid]<target:
+                    l=mid+1
+                else:
+                    r=mid-1
+            return l
+        def upper_bound():
+            l=0
+            r=len(nums)-1
+            while l<=r:
+                mid=l+(r-l)//2
+                
                 if nums[mid]<=target:
                     l=mid+1
                 else:
                     r=mid-1
-            return l-1
-        
-        a=lower()
-        b=upper()
-        if a<0 or b<0 or a>=len(nums) or nums[a]!=target:
-            return ans
-        ans[0]=a
-        ans[1]=b
-        
-        return ans
+            return l
 
-        
-
+        a=lower_bound()
+        b=upper_bound()-1
+        print(a,b)
+        if a>=len(nums)  or nums[a]!=target or nums[b]!=target:
+            return [-1,-1]
+        return [a,b]
 
             
-        
+    
         
