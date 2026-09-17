@@ -1,25 +1,24 @@
 class Solution:
-    def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        def f(mid):
+    def minEatingSpeed(self, piles: list[int], h: int) -> int:
+        low=1
+        high=max(piles)
+        ans=0
+        def min_per_hr(x):
             count=0
             for i in range(len(piles)):
-                count+=(ceil(piles[i]/mid))
+                count+=math.ceil(piles[i]/x)
             return count
-
-        l=1
-        r=max(piles)
-        while l<=r:
-            mid=(l+r)//2
-            check=f(mid)
-
-            if check <=h:
+        while low<=high:
+            mid=(low+high)//2
+            k=min_per_hr(mid)
+            print(k)
+            if k<=h:
+                print(mid)
+                high=mid-1
                 ans=mid
-                r=mid-1
-
             else:
-                l=mid+1
+                low=mid+1
+                
 
         return ans
-
-
         
