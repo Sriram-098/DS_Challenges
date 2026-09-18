@@ -11,7 +11,6 @@ class Solution:
         while fast!=None and fast.next!=None:
             slow=slow.next
             fast=fast.next.next
-           
             if slow==fast:
                 third=head
                 while slow!=third:
@@ -19,7 +18,4 @@ class Solution:
                     third=third.next
                 return slow
         return None
-
-
-
         
