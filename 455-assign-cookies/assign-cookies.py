@@ -3,19 +3,18 @@ class Solution:
         count=0
         g.sort()
         s.sort()
+        i=0
         j=0
-        used=[0]*len(s)
-        for i in range(len(g)):
-            prev_count=count
-            for j in range(len(s)):
-                if s[j]>=g[i] and used[j]==0:
-                    count+=1
-                    used[j]=1
-                    break
-            if prev_count==count:
-                break
+        while j<len(s):
+            if i<len(g) and s[j]>=g[i]:
+                count+=1
+                i+=1
+            j+=1
+        return count
+           
             
-                
+
+            
         return count
 
         
