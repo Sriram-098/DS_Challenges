@@ -1,25 +1,24 @@
 class Solution:
-    def lemonadeChange(self, bills: List[int]) -> bool:
-        count_5=0
-        count_10=0
+    def lemonadeChange(self, bills: list[int]) -> bool:
+        change5=0
+        change10=0
         for i in range(len(bills)):
             if bills[i]==5:
-                count_5+=1
+                change5+=1
             elif bills[i]==10:
-                if count_5>=1:
-                    count_5-=1
-                    count_10+=1
+                change10+=1
+                if change5>0:
+                    change5-=1
                 else:
                     return False
             else:
-                
-                if count_5>=1 and count_10>=1:
-                    count_5-=1
-                    count_10-=1
-                elif count_5>=3:
-                    count_5-=3
+                if change10>0 and change5>0:
+                    change5-=1
+                    change10-=1
+                elif change5>=3:
+                    change5-=3
                 else:
                     return False
-        return True 
 
+        return True
         
