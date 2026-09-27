@@ -1,20 +1,15 @@
 from queue import PriorityQueue
+import heapq
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         s=Counter(nums)
-        q=PriorityQueue()
-        for x,v in s.items():
-            q.put((-v,x))
+        heap=[]
+        for key,val in s.items():
+            heapq.heappush(heap,(val,key))
 
-        ans=[]
-        print(q.queue)
-        while k>0:
-            
-            a,b=q.get()
-            ans.append(b)
-            
-            k-=1
-        return ans
-        
+            if len(heap)>k:
+                heapq.heappop(heap)
+
+        return [key for val,key in heap]
 
         
