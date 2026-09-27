@@ -1,25 +1,20 @@
+from queue import PriorityQueue
 class Solution:
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        #dict
-        d=dict()
-        for i in range(len(nums)):
-            if nums[i] in d:
-                d[nums[i]]+=1
-            else:
-                d[nums[i]]=1
-        
-        x=list(sorted(d.items(),key=lambda x:x[1],reverse=True))
-        print(x)
-        res=[]
-        for i in range(k):
-            res.append(x[i][0])
-        return res
+    def topKFrequent(self, nums: list[int], k: int) -> list[int]:
+        s=Counter(nums)
+        q=PriorityQueue()
+        for x,v in s.items():
+            q.put((-v,x))
+
+        ans=[]
+        print(q.queue)
+        while k>0:
+            
+            a,b=q.get()
+            ans.append(b)
+            
+            k-=1
+        return ans
         
 
-
-        
-        
-        
-
-        
         
