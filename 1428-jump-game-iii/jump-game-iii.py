@@ -9,8 +9,6 @@ class Solution:
                 return False
             if arr[i]==0 :
                 return True
-            if dp[i]!=0:
-                return dp[i]
             dp[i]=True
             one_way=check(i-arr[i])
             ano_way=check(i+arr[i])
